@@ -1,128 +1,134 @@
-```markdown
-# Mood Ring NFT
+# 🌙 Mood Ring NFT
 
-A blockchain-based “Mood Ring” NFT that changes its mood based on user activity but reverse, if you're active, it'll be sad, and if you're idle, it'll become happy.  
-Built with **Sui Move** (smart contracts) and a **React + Vite + TypeScript** frontend.
-
----
-
-## Features
-
-- Mint a Mood Ring NFT.
-- Mood decays based on wallet activity.
-- Query current mood of your NFT.
-- Frontend wallet connection via **MetaMask** (or any Sui-compatible wallet).
+A blockchain-based **Mood Ring NFT** that visually changes its "mood" based on wallet activity or time but reverse. it'll be happy if you're idle and will be sad when you're showing activity
+Built with **Sui Move** (smart contracts) + **React (Vite + TypeScript)** frontend.
 
 ---
 
-## Folder Structure
+## ✨ Features
+
+* 🎨 Mint a **Mood Ring NFT**
+* ⏳ NFT **mood degrades or brightens** over time / activity
+* 🔗 **Sui blockchain** smart contract in Move
+* 💻 **React + Vite** frontend with wallet connection
+* 🔐 Supports **MetaMask / Sui Wallet** integration
+
+---
+
+## 📂 Project Structure
 
 ```
-
 mood-ring/
-├─ move/                     # Sui Move smart contract
-│  ├─ mood\_contract/
-│  │  ├─ Sources/
-│  │  │  └─ mood\_contract.move
-│  │  └─ Move.toml
-├─ frontend/                  # React + Vite frontend
-│  ├─ src/
-│  │  ├─ hooks/
-│  │  │  ├─ useWallet.ts
-│  │  │  └─ useContracts.ts
-│  │  ├─ components/
-│  │  │  └─ WalletConnect.tsx
-│  │  └─ App.tsx
-│  ├─ package.json
-│  └─ tsconfig.json
-└─ README.md
-
-````
-
----
-
-## Requirements
-
-- Node.js >= 18
-- npm or yarn
-- Sui CLI: [Install guide](https://docs.sui.io/build/install)
-- WSL1/2 or Linux/macOS terminal for Move development
+├── move/                     # Sui Move smart contract
+│   └── mood_contract/
+│       ├── sources/
+│       │   └── mood_contract.move
+│       └── Move.toml
+│
+├── frontend/                 # React + Vite + TS frontend
+│   ├── src/
+│   │   ├── hooks/            # Wallet + Contract logic
+│   │   │   ├── useWallet.ts
+│   │   │   └── useContracts.ts
+│   │   ├── components/       # UI Components
+│   │   │   └── WalletConnect.tsx
+│   │   └── App.tsx
+│   ├── package.json
+│   └── tsconfig.json
+│
+└── README.md
+```
 
 ---
 
-## Setup
+## ⚡ Prerequisites
 
-### 1. Clone repo
+* **Node.js** >= 18
+* **npm** or **yarn**
+* **Sui CLI** → [Install Guide](https://docs.sui.io/build/install)
+* **WSL/Linux/macOS** terminal for Move development
+
+---
+
+## 🚀 Setup
+
+### 1️⃣ Clone Repo
 
 ```bash
 git clone <your-repo-url>
 cd mood-ring
-````
+```
 
-### 2. Setup Sui Move contract
+---
+
+### 2️⃣ Setup Smart Contract (Move)
 
 ```bash
 cd move/mood_contract
 sui client publish --gas-budget 10000
 ```
 
-* Make sure your wallet has enough SUI tokens for gas.
-* Note the **package ID** after publish; you’ll need it in the frontend.
+* Make sure your wallet has **enough SUI tokens for gas**.
+* Copy the **Package ID** printed after publish → you’ll need this in frontend config.
 
-### 3. Setup frontend
+---
+
+### 3️⃣ Setup Frontend
 
 ```bash
 cd ../../frontend
 npm install
 ```
 
-* Ensure `@mysten/sui.js` is installed:
+Install Sui SDK:
 
 ```bash
 npm install @mysten/sui.js
 ```
 
-### 4. Configure frontend
+---
 
-Edit `src/config/index.ts` (or wherever your config is):
+### 4️⃣ Configure Contract
+
+Create/edit `src/config/index.ts`:
 
 ```ts
 export const config = {
   CHAIN_NAME: "Sui Testnet",
-  PACKAGE_ID: "<your_sui_package_id>",
+  PACKAGE_ID: "<your_sui_package_id>", // 👈 paste from step 2
 };
 ```
 
-### 5. Run frontend
+---
+
+### 5️⃣ Run Frontend
 
 ```bash
 npm run dev
 ```
 
-* Open the browser at `http://localhost:5173`.
-* Connect your wallet and interact with Mood Ring NFTs.
+👉 Open [http://localhost:5173](http://localhost:5173)
+
+* Connect your wallet
+* Mint a Mood Ring NFT
+* Watch its **mood change** 🎭
 
 ---
 
-## Usage
+## 🛠️ Usage
 
-* Mint a new Mood Ring NFT using `mint_mood_ring`.
-* The NFT's mood changes automatically based on activity.
-* Query your NFT mood with `get_mood`.
-* Update the mood using `update_mood` periodically or on user events.
-
----
-
-## Notes
-
-* Keep **Move contracts** and **frontend** in separate terminals (WSL vs Windows) if using different OSes.
-* Always check gas balance for Sui transactions.
-* `useWallet` and `useContracts` hooks manage wallet connection and contract interactions.
+* **Mint** → `mint_mood_ring` creates your NFT
+* **Update** → `update_mood` changes its state
+* **Get Mood** → `get_mood` returns mood level (0–100)
 
 ---
 
-## References
+## 🔗 References
 
-* [Sui Move Documentation](https://docs.sui.io/build/move)
-* [Sui JavaScript SDK](https://github.com/MystenLabs/sui/tree/main/sdk/javascript)
-* [Vite + React + TypeScript Setup](https://vitejs.dev/guide/)
+* 📘 [Sui Move Docs](https://docs.sui.io/build/move)
+* 🛠 [Sui JavaScript SDK](https://github.com/MystenLabs/sui/tree/main/sdk/javascript)
+* ⚡ [Vite Docs](https://vitejs.dev/guide/)
+
+---
+
+💜 Built by Vidha
